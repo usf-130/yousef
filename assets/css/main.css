@@ -1,3 +1,5 @@
+@import url('fontiran.css');
+
 /*---------------------------------
 	1.1 Theme SCSS
 ---------------------------------*/
@@ -163,9 +165,9 @@ h6, .body__overlay {
 
 :root {
   /**  @font family declaration */
-  --rs-ff-body: "Urbanist", sans-serif;
-  --rs-ff-title: "Urbanist", sans-serif;
-  --rs-ff-p: "Urbanist", sans-serif;
+  --rs-ff-body: "IRANSansX", sans-serif;
+  --rs-ff-title: "IRANSansX", sans-serif;
+  --rs-ff-p: "IRANSansX", sans-serif;
   --rs-ff-fontawesome: "Font Awesome 6 Pro";
   --rs-ff-remixicon: "remixicon";
   /** @color declaration */
