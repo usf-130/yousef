@@ -7,38 +7,41 @@
         wowAnimation();
     });
 
+// rtl setting start
+function rs_rtl_settings() {
+    $('#rs-dir-toggler').on("change", function () {
+        toggle_rtl();
+        location.reload(true); // صفحه مجدداً بارگذاری می‌شود
+    });
 
-    // rtl setting start
-    function rs_rtl_settings() {
-        $('#rs-dir-toggler').on("change", function () {
-            toggle_rtl();
-            location.reload(true);
-        });
+    function rs_set_scheme(rs_dir) {
+        localStorage.setItem('rs_dir', rs_dir);
+        document.documentElement.setAttribute("dir", rs_dir);
 
-        function rs_set_scheme(rs_dir) {
-            localStorage.setItem('rs_dir', rs_dir);
-            document.documentElement.setAttribute("dir", rs_dir);
-
-            var list = $("[href='assets/vendor/css/bootstrap.min.css']");
-            $(list).attr("href", rs_dir === 'rtl' ? "assets/vendor/css/bootstrap.rtl.min.css" : "assets/vendor/css/bootstrap.min.css");
-        }
-
-        function toggle_rtl() {
-            if (localStorage.getItem('rs_dir') === 'rtl') {
-                rs_set_scheme('ltr'); /* change ltr to rtl */
-            } else {
-                rs_set_scheme('rtl');
-            }
-        }
-
-        function rs_init_dir() {
-            var savedDir = localStorage.getItem('rs_dir');
-            rs_set_scheme(savedDir || 'ltr'); /* change ltr to rtl */
-            document.getElementById('rs-dir-toggler').checked = savedDir === 'rtl';
-        }
-
-        rs_init_dir();
+        var list = $("[href='assets/vendor/css/bootstrap.min.css']");
+        $(list).attr("href", rs_dir === 'rtl' ? "assets/vendor/css/bootstrap.rtl.min.css" : "assets/vendor/css/bootstrap.min.css");
     }
+
+    function toggle_rtl() {
+        // اگر مقدار 'rs_dir' برابر با rtl باشد، به ltr تغییر می‌دهیم
+        if (localStorage.getItem('rs_dir') === 'rtl') {
+            rs_set_scheme('ltr');
+        } else {
+            rs_set_scheme('rtl');
+        }
+    }
+
+    function rs_init_dir() {
+        // مقدار 'rs_dir' از localStorage گرفته می‌شود یا پیش‌فرض 'rtl' تنظیم می‌شود
+        var savedDir = localStorage.getItem('rs_dir') || 'rtl';
+        rs_set_scheme(savedDir); // مقدار ذخیره‌شده به تابع rs_set_scheme فرستاده می‌شود
+        // سوئیچ بر اساس مقدار 'rs_dir' تیک زده می‌شود
+        document.getElementById('rs-dir-toggler').checked = savedDir === 'rtl';
+    }
+
+    rs_init_dir();
+}
+
 
     /* Append settings HTML  */
     rs_settings_append(true); /* if you want to enable dark mode, send "true" */
