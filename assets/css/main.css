@@ -411,6 +411,7 @@ i[class^=icon-] {
   top: 0;
   z-index: 9999;
   left: 0;
+  direction: rtl;
   opacity: 0;
   visibility: hidden;
 }
